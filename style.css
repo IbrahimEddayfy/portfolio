@@ -1295,6 +1295,134 @@ h2 {
 }
 
 
+/* Tech stack — grouped categories */
+
+.tech-stack .subtitle {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.stack-groups {
+    position: relative;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 48px;
+}
+
+.stack-group {
+    position: relative;
+}
+
+.stack-group-title {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px 14px;
+
+    margin: 0 0 20px;
+
+    text-align: center;
+}
+
+.stack-group-label {
+    display: inline-block;
+
+    padding: 7px 16px;
+
+    border-radius: 30px;
+
+    color: var(--gold-light);
+
+    background:
+        rgba(244, 215, 122, 0.10);
+
+    border:
+        1px solid rgba(244, 215, 122, 0.28);
+
+    font-size: 0.95rem;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    box-shadow:
+        0 5px 18px rgba(6, 26, 58, 0.18);
+}
+
+.stack-group-note {
+    color: rgba(255, 255, 255, 0.58);
+
+    font-size: 0.85rem;
+}
+
+.stack-group .tags {
+    gap: 10px;
+}
+
+
+/* Professional / support skills — softer, non-technical family */
+
+.tags-soft span {
+    background:
+        rgba(37, 99, 235, 0.16);
+
+    border-color:
+        rgba(147, 197, 253, 0.26);
+}
+
+.tags-soft span:hover {
+    background:
+        rgba(37, 99, 235, 0.28);
+
+    border-color:
+        rgba(147, 197, 253, 0.55);
+}
+
+
+/* Currently developing — dashed outline signals work in progress */
+
+.tags-developing span {
+    color: rgba(255, 255, 255, 0.86);
+
+    background:
+        rgba(244, 215, 122, 0.07);
+
+    border:
+        1px dashed rgba(244, 215, 122, 0.34);
+}
+
+.tags-developing span:hover {
+    background:
+        rgba(244, 215, 122, 0.16);
+
+    border-color:
+        rgba(244, 215, 122, 0.6);
+
+    color: var(--gold-light);
+}
+
+.stack-group-footnote {
+    max-width: 780px;
+
+    margin: 22px auto 0;
+
+    color: rgba(255, 255, 255, 0.58);
+
+    font-size: 0.85rem;
+
+    line-height: 1.75;
+
+    text-align: center;
+}
+
+
 /* =========================================================
    CONTACT CTA
    ========================================================= */
@@ -1526,9 +1654,12 @@ h2 {
     }
 }
 
+/* Two columns by default: keeps 4 posts as a complete 2x2 block instead of
+   an orphan "3 + 1" row that auto-fit would produce. Widens to 4 columns once
+   four cards can each hold at least 280px (grid width = 84% of the viewport). */
 .blog .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     gap: 30px;
     margin-top: 55px;
@@ -1733,7 +1864,15 @@ h2 {
 
 /* ================================
    BLOG RESPONSIVE
-================================ */
+=============================== */
+
+@media (min-width: 1460px) {
+
+    .blog .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
@@ -2118,6 +2257,21 @@ footer p {
     }
 
 
+    /* Tech stack groups */
+
+    .stack-groups {
+        gap: 38px;
+    }
+
+    .stack-group-label {
+        font-size: 0.88rem;
+    }
+
+    .stack-group-note {
+        font-size: 0.8rem;
+    }
+
+
     /* General */
 
     h2 {
@@ -2207,6 +2361,28 @@ footer p {
 
     .trust-item span {
         font-size: 0.68rem;
+    }
+
+    .stack-groups {
+        gap: 32px;
+    }
+
+    .stack-group-title {
+        gap: 8px 10px;
+    }
+
+    .stack-group-label {
+        font-size: 0.8rem;
+
+        padding: 6px 13px;
+    }
+
+    .stack-group-note {
+        font-size: 0.75rem;
+    }
+
+    .stack-group-footnote {
+        font-size: 0.8rem;
     }
 }
 
@@ -2760,6 +2936,50 @@ footer p {
 
 .services .card p {
     color: rgba(255, 255, 255, 0.68);
+}
+
+/* Service category pill — mirrors the .stack-group-label treatment so each
+   service states which Tech Stack group it comes from. */
+
+.services .card .service-category {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 6px 13px;
+
+    border-radius: 30px;
+
+    color: #ff6b6f;
+
+    background: rgba(239, 68, 68, 0.10);
+
+    border: 1px solid rgba(239, 68, 68, 0.28);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+/* The pill now owns the space above the title, so the h3 keeps its
+   browser default top margin from being counted twice. */
+
+.services .card .service-category + h3 {
+    margin-top: 0;
+}
+
+/* Currently developing — gold + dashed outline, same signal the Tech
+   Stack section already uses for work in progress. */
+
+.services .card .service-category.is-dev {
+    color: var(--gold-light);
+
+    background: rgba(244, 215, 122, 0.10);
+
+    border: 1px dashed rgba(244, 215, 122, 0.34);
 }
 
 @keyframes services-ambient-drift {
